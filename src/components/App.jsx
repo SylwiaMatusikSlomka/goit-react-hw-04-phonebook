@@ -32,27 +32,9 @@ export const App = () => {
     return true;
   }
 
-  const validateFullName = fullName => {
-    if (!fullName) {
-        return false;
-    }
-
-    var regex = /^[A-ZĄĆĘŁŃÓŚŹŻ][a-ząćęłńóśźż]+ [A-ZĄĆĘŁŃÓŚŹŻ][a-ząćęłńóśźż]+$/;
-
-    if (!regex.test(fullName)) {
-        return false;
-    }
-
-    return true;
-}
-
   const addContacts = async data => {
     if(validateNumber(data.number)){
-      if(validateFullName(data.name)){
-        await setContacts(prevContacts => [...prevContacts, data]);
-      }else{
-        return alert(`${data.name} is not correct NAME!`);
-      }
+      await setContacts(prevContacts => [...prevContacts, data]);
     }else{
       return alert(`${data.number} is not correct NUMBER!`);
     }
