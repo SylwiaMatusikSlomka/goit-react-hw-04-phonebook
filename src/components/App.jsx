@@ -19,6 +19,11 @@ export const App = () => {
     if (isMounted) localStorage.setItem('contacts', JSON.stringify(contacts));
   }, [contacts, isMounted]);
 
+  const validateName = name => {
+    const namePattern = /^[a-zA-Zа-яА-Я\s'-]+$/;
+    return namePattern.test(name);
+  }
+  
   const validateNumber = number => {
     if (!number) {
         return false;
@@ -34,7 +39,11 @@ export const App = () => {
 
   const addContacts = async data => {
     if(validateNumber(data.number)){
-      await setContacts(prevContacts => [...prevContacts, data]);
+      if(!validateName(data.name){
+        return alert(`${data.name} is not correct NAME!`);
+      }else{
+        await setContacts(prevContacts => [...prevContacts, data]);
+      }
     }else{
       return alert(`${data.number} is not correct NUMBER!`);
     }
