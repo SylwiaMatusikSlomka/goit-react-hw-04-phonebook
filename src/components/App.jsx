@@ -39,7 +39,7 @@ export const App = () => {
 
   const addContacts = async data => {
     if(validateNumber(data.number)){
-      if(!validateName(data.name){
+      if(!validateName(data.name)){
         return alert(`${data.name} is not correct NAME!`);
       }else{
         await setContacts(prevContacts => [...prevContacts, data]);
